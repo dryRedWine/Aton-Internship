@@ -67,6 +67,4 @@ public class UserController {
         log.info("Find user by value={}", value);
         return userService.findByValue(value);
     }
-
-    // Вернуть все записи с пагинацией?
 }
