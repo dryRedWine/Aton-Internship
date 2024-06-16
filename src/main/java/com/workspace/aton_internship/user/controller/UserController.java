@@ -34,8 +34,8 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public User change(@RequestBody @Valid User from,
                        @RequestParam(name = "account", required = false) @Positive Long account,
-                       @RequestParam(name = "account", required = false) @NotBlank String name,
-                       @RequestParam(name = "account", required = false) @PositiveOrZero Double value) {
+                       @RequestParam(name = "name", required = false) @NotBlank String name,
+                       @RequestParam(name = "value", required = false) @PositiveOrZero Double value) {
         log.info("Change user");
         return userService.change(from, new User(account, name, value));
     }

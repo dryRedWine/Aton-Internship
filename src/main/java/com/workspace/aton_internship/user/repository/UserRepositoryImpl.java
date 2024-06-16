@@ -26,19 +26,15 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User change(User from, User to) {
-        if(!from.getAccount().equals(to.getAccount())) {
-            userByAccounts.removeMapping(from.getAccount(), from);
-            userByAccounts.put(to.getAccount(), to);
-        }
-        if(!from.getName().equals(to.getName())) {
-            userByName.removeMapping(from.getName(), from);
-            userByName.put(to.getName(), to);
-        }
-        if(!from.getValue().equals(to.getValue())) {
-            userByValue.removeMapping(from.getValue(), from);
-            userByValue.put(to.getValue(), to);
-        }
-        return to;
+        if(to.getAccount() != null)
+            to.setAccount(from.getAccount());
+        if(to.getName() != null)
+            to.setName(from.getName());
+        if(to.getValue() != null)
+            to.setValue(from.getValue());
+
+        remove(from);
+        return save(to);
     }
 
     @Override
